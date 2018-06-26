@@ -1,0 +1,25 @@
+          {% load static %}
+
+          {% if tag.widget == "LIGHT" %}
+              <form action="{% url 'main_app:update_tag_value' tag.num_ID %}" method="POST">
+              {% csrf_token %}
+              {% if tag.value == "1" %}
+                <input type="image" src="{% static 'img/light_on.png' %}">
+              {% else %}
+                <input type="image" src="{% static 'img/light_off.png' %}">
+              {% endif %}
+              </form>
+          {% elif tag.widget == "DISPLAY" %}
+                <p>{{ tag.value }} {{ tag.unit }}</p>
+                <img class="card-img" src="{% static 'img/thermometer.png' %}" style="width: 50%; height: 50%;">
+          {% elif tag.widget == "PARAMETER" %}
+                <p></p>
+                <p>{{ tag.value }} {{ tag.unit }}</p>
+                <form action="{% url 'main_app:update_tag_value' tag.num_ID %}" method="POST">
+                  {% csrf_token %}
+                  <div class="form-group col-sm-12">
+                    <input class="form-control"  name="tag_value">
+                  </div>
+                  <button class="btn btn-primary" type="submit">UPDATE VALUE</button>
+                </form>
+          {% endif %}

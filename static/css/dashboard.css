@@ -1,0 +1,33 @@
+p {
+  margin: 10px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.gridster .gs-w {
+  background: #FFFFFF;
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.gridster .player {
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  background: #BBB;
+}
+
+.gridster .preview-holder {
+  border: none !important;
+  border-radius: 0 !important;
+  background: white !important;
+}
+
+.gridster ul {
+  background-color: #353A3F;
+  color: #9a9c9f
+  font-size: 16px;
+}
+
+.gridster ul{ text-align:center;width:450px;margin-left:auto;margin-right:auto;list-style-type: none;}
+.gridster li{ float:left;padding:5px}

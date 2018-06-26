@@ -1,0 +1,53 @@
+{% extends "main_app/base.html" %}
+{% load static %}
+  {% block content %}
+    <div class="container">
+      <div class="row">
+        {% if tag_list %}
+        <table class="table">
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>NAME</th>
+                  <th>VALUE</th>
+              </tr>
+          </thead>
+                {% for tag in tag_list %}
+                <tr>
+                    <td>{{ tag.num_ID }}</td>
+                    <td>{{ tag.name_ID }}</td>
+                    <td>
+                      {% if tag.widget == "LIGHT" %}
+                          <form action="{% url 'main_app:update_tag_value' tag.num_ID %}" method="POST">
+                          {% csrf_token %}
+                          {% if tag.value == "1" %}
+                            <input type="image" src="{% static 'img/light_on.png' %}" style="width:24px;">
+                          {% else %}
+                            <input type="image" src="{% static 'img/light_off.png' %}" style="width:24px;">
+                          {% endif %}
+                          </form>
+                      {% elif tag.widget == "BUTTON" %}
+                        <form action="{% url 'main_app:update_tag_value' tag.num_ID %}" method="POST">
+                        {% csrf_token %}
+                        <input type="submit" value="{{ tag.name_ID }}">
+                        </form>
+                      {% elif tag.widget == "DISPLAY" %}
+                          <p>{{ tag.value }} {{ tag.unit }}</p>
+                      {% elif tag.widget == "PARAMETER" %}
+                          <form action="{% url 'main_app:update_tag_value' tag.num_ID %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group col-sm-12">
+                              <input style="padding-right:20px; text-align:right; width:100px;" value="{{ tag.value }}"  name="tag_value" value="{{ tag.value }}" onchange="this.form.submit()" ></input><span style="margin-left:-20px;"> {{ tag.unit }}</span>
+                            </div>
+                          </form>
+                      {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+        </table>
+        {% else %}
+        <p>No tags added yet!</p>
+        {% endif %}
+      </div>
+    </div>
+  {% endblock %}

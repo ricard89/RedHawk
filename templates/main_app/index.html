@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% extends "main_app/base.html" %}
+
+  {% block content %}
+  <div class="jumbotron">
+    <h1 class="display-3">Welcome to RedHawk!</h1>
+    <p class="lead">With RedHawk! you can cloud everything! Download the GATEWAY, configure your tags and start your APP</p>
+    <hr class="my-4">
+    <p>COMPATIBLE WITH: SIEMENS S7, CSV, MODBUS, EHTERNET-IP, ARDUINO... </p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="{% url 'signup' %}" role="button">SIGN UP</a>
+      <a class="btn btn-primary btn-lg" href="#" role="button">DOWNLOAD GATEWAY</a>
+    </p>
+  </div>
+  {% endblock %}
