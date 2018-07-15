@@ -1,6 +1,7 @@
 from main_app.models import Tag
 from rest_framework import serializers
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
+from accounts.models import User
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -19,4 +20,4 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         """Map this serializer to the default django user model."""
         model = User
-        fields = ('id', 'username')
+        fields = ('id', 'username', 'email', 'device_token')

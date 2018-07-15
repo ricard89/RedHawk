@@ -7,6 +7,10 @@ from django.http import HttpResponse
 from main_app.models import Tag
 from main_app.forms import TagForm
 
+from accounts.models import User
+
+from . import notifications
+
 
 def index(request):
     return render(request, 'main_app/index.html')
@@ -14,7 +18,6 @@ def index(request):
 
 @login_required
 def add_tag(request):
-
     if request.method == "POST":
         form = TagForm(request.POST, user=request.user)
 
@@ -60,6 +63,12 @@ def update_tag_value(request, tag_id):
                 Tag.objects.filter(num_ID=tag_id, owner=request.user).update(value=0)
             else:
                 Tag.objects.filter(num_ID=tag_id, owner=request.user).update(value=1)
+
+    #check for notifcations
+    user = User.objects.get(email=request.user)
+
+    if user.apns_active:
+        notifications.push_notification(user)
 
     return taglist(request)
 

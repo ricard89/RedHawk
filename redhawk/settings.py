@@ -25,8 +25,9 @@ SECRET_KEY = '*c(3t8))0h^b9$u(nyf4)z*k1pbp)(%=@ha@-33-nsvc_$v074'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.8.50',]
+ALLOWED_HOSTS = ['192.168.8.50']
 
+AUTH_USER_MODEL = 'accounts.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
@@ -53,9 +54,9 @@ INSTALLED_APPS = [
     'api',
     'rest_framework',
     'rest_framework.authtoken',
-    'background_task'
-    #'push-notifications',
+    'push_notifications',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -117,7 +118,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -148,8 +148,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 PUSH_NOTIFICATIONS_SETTINGS = {
         "FCM_API_KEY": "[your api key]",
-        "FCM_POST_URL": "https://fcm.googleapis.com/fcm/send",
         "GCM_API_KEY": "[your api key]",
-        "APNS_CERTIFICATE": "/path/to/your/certificate.pem",
-        "APNS_TOPIC": "com.example.push_test",
+        "APNS_CERTIFICATE": "certificates/apns-dev.pem",
+        "APNS_TOPIC": "com.ricardbordalba.ADEV",
+        "APNS_USE_SANDBOX": "api.development.push.apple.com",
 }

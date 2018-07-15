@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.db import models
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
+#from accounts.models import User
 from django.db.models.signals import post_save
 from rest_framework.authtoken.models import Token
 from django.dispatch import receiver
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 
 # Create your models here.
 class Tag(models.Model):
@@ -33,7 +36,7 @@ class Tag(models.Model):
     widget = models.CharField(max_length=20, choices=WIDGETS)
     device = models.CharField(max_length=20, default="", blank=True, null=True)
     arguments = models.CharField(max_length=200, default="", blank=True, null=True)
-    owner = models.ForeignKey('auth.User', related_name='tags', on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, related_name='tags', on_delete=models.CASCADE)
 
     class Meta:
         unique_together = (('num_ID', 'owner'), ('name_ID', 'owner'))
@@ -62,7 +65,7 @@ class Notification(models.Model):
     title = models.CharField(max_length=200)
     message = models.CharField(max_length=200)
     sended = models.BooleanField(default=False)
-    owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 @receiver(post_save, sender=User)

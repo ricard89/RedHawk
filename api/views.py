@@ -3,7 +3,8 @@ from rest_framework import generics, permissions
 from api.permissions import IsOwner
 from api.serializers import TagSerializer, UserSerializer
 from main_app.models import Tag
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
+from accounts.models import User
 
 
 # Create your views here.

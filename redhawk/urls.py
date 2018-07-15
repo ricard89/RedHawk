@@ -21,8 +21,6 @@ from django.contrib.auth import views as auth_views
 from main_app import views
 from accounts import views as accounts_views
 
-from main_app.tasks import push_notification
-
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^admin/', admin.site.urls),
